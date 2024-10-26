@@ -30,8 +30,24 @@ The application consists of solutions for linear equations, non-linear equations
 ### 1. Solution of Linear Equations
 
 #### a. Jacobi Iterative Method
-The Jacobi method is an iterative algorithm that solves a system of linear equations. It updates each variable sequentially based on the previous iteration values until convergence is achieved.
+The **Jacobi iterative method** is an algorithm used to solve a system of linear equations iteratively, particularly when the coefficient matrix is diagonally dominant. It’s useful in scenarios where direct methods (like Gaussian elimination) might be computationally expensive or infeasible for large systems.
 
+### How It Works:
+1. **Initialization**: Start with an initial guess for each variable, usually \( x = [0, 0, \dots, 0] \).
+2. **Iteration**:
+   - For each equation in the system, isolate the variable on the left side.
+   - Calculate the new value of each variable based on the values from the previous iteration.
+   - The formula for updating a variable \( x_i \) at iteration \( k+1 \) is:
+     \[
+     x_i^{(k+1)} = \frac{b_i - \sum_{j \neq i} a_{ij} x_j^{(k)}}{a_{ii}}
+     \]
+     where \( b_i \) is the constant term, \( a_{ij} \) are coefficients, and \( a_{ii} \) is the diagonal coefficient of \( x_i \).
+3. **Convergence**:
+   - Repeat the iterations until the difference between successive approximations is below a specified tolerance level, or until a maximum number of iterations is reached.
+
+### Key Points:
+- **Diagonal Dominance**: The method requires the matrix to be diagonally dominant (each diagonal element is larger than the sum of other row elements) to guarantee convergence.
+- **Application**: Jacobi’s method is especially useful for parallel computation, as each variable update can be calculated independently from others within an iteration.
 #### b. Gauss-Seidel Iterative Method
 The Gauss-Seidel method is similar to the Jacobi method but updates each variable as soon as its new value is computed, leading to faster convergence in many cases.
 
